@@ -1,5 +1,7 @@
 package graph.layout.force.directed;
 
+import java.awt.Dimension;
+
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import graph.elements.Edge;
 import graph.elements.Vertex;
@@ -16,11 +18,21 @@ public class FruchtermanReingoldLayouter <V extends Vertex, E extends Edge<V>> e
 
 	@Override
 	protected void initLayouter(GraphLayoutProperties layoutProperties) {
-		FRLayout<V,E> frLayout = new FRLayout<V, E>(jungGraph);
+		
 		
 		Object attractionMultiplier = layoutProperties.getProperty(FruchtermanReingoldProperties.ATTRACTION_MULTIPLIER);
 		Object repulsionMultiplier = layoutProperties.getProperty(FruchtermanReingoldProperties.REPULSION_MULTIPLIER);
 		Object maximumIterations = layoutProperties.getProperty(FruchtermanReingoldProperties.MAXIMUM_ITERATIONS);
+		Object graphDimension = layoutProperties.getProperty(FruchtermanReingoldProperties.DIMENSION);
+		
+		FRLayout<V,E> frLayout;
+		if ( graphDimension != null) {
+			frLayout = new FRLayout<V, E>(jungGraph, (Dimension) graphDimension);
+		} else {
+			frLayout = new FRLayout<V, E>(jungGraph);
+		}
+		
+				 
 		
 		if (attractionMultiplier != null && attractionMultiplier instanceof Double)
 			frLayout.setAttractionMultiplier((double)attractionMultiplier);

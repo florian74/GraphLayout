@@ -1,5 +1,8 @@
 package graph.layout;
 
+
+import java.awt.Dimension;
+
 /**
  * List of all properties for each implemented layout algorithm
  * Each enum contains values used for generic implementation
@@ -7,7 +10,6 @@ package graph.layout;
  * @author Renata
  */
 public interface PropertyEnums {
-
 
 	/**
 	 * All configurable properties of the Kamada-Kawai layout algorithm
@@ -263,8 +265,10 @@ public interface PropertyEnums {
 	 * @author Renata
 	 */
 	public enum FruchtermanReingoldProperties implements PropertyEnums{
-		ATTRACTION_MULTIPLIER("Attraction multiplier", false, Double.class), REPULSION_MULTIPLIER("Repulsion multiplier", false, Double.class),
-		MAXIMUM_ITERATIONS("Maximum iterations", false, Integer.class);
+		ATTRACTION_MULTIPLIER("Attraction multiplier", false, Double.class),
+		REPULSION_MULTIPLIER("Repulsion multiplier", false, Double.class),
+		MAXIMUM_ITERATIONS("Maximum iterations", false, Integer.class),
+		DIMENSION("Size of the graph", false, Dimension.class);
 
 		/**
 		 * Human readable name, can be used to generate the UI label
